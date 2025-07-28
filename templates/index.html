@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notebook to PDF Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Notebook to PDF Converter</h1>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data">
+            <label>Upload a .ipynb File</label>
+            <input type="file" name="notebook" accept=".ipynb">
+
+            <div class="divider">OR</div>
+
+            <label>Paste Google Colab Notebook URL</label>
+            <input type="text" name="colab_url" placeholder="https://colab.research.google.com/...">
+
+            <button type="submit">Convert to PDF</button>
+        </form>
+    </div>
+</body>
+</html>
