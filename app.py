@@ -13,11 +13,34 @@ app = Flask(__name__)
 def convert_ipynb_to_pdf(ipynb_file_path, output_pdf_path):
     with open(ipynb_file_path, 'r', encoding='utf-8') as f:
         notebook_node = nbformat.read(f, as_version=4)
-    
+
     html_exporter = HTMLExporter()
-    html_exporter.template_name = "lab"
+    html_exporter.template_name = "classic"
     (body, _) = html_exporter.from_notebook_node(notebook_node)
-    
+
+    # Inject custom CSS to prevent overflow and clipping
+    custom_css = """
+    <style>
+        body {
+            max-width: 100%;
+            overflow-x: auto;
+            font-family: 'Arial', sans-serif;
+        }
+        pre {
+            white-space: pre-wrap;       /* Wrap long lines in code */
+            word-wrap: break-word;
+        }
+        .output {
+            overflow-x: auto;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    """
+    body = custom_css + body
+
     WeasyHTML(string=body).write_pdf(str(output_pdf_path))
 
 def extract_drive_file_id(colab_url):
