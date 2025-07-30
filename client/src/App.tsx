@@ -23,7 +23,7 @@ const App: React.FC = () => {
     setError("");
 
     try {
-      const response = await axios.post("/convert", formData, {
+      const response = await axios.post("https://colabprinter-backend.onrender.com/convert", formData, {
         responseType: "blob",
       });
 
