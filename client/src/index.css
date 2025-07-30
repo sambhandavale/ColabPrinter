@@ -1,0 +1,164 @@
+:root {
+  --scaleby: 1;
+
+  --padding: calc(30px * var(--scaleby));
+  --border-radius: calc(12px * var(--scaleby));
+  --box-shadow: 0 0 calc(15px * var(--scaleby)) rgba(0, 0, 0, 0.1);
+  --container-width: calc(400px * var(--scaleby));
+  --font-size-heading: calc(24px * var(--scaleby));
+  --font-size-label: calc(16px * var(--scaleby));
+  --font-size-input: calc(15px * var(--scaleby));
+  --font-size-button: calc(16px * var(--scaleby));
+  --font-size-divider: calc(14px * var(--scaleby));
+  --input-padding: calc(10px * var(--scaleby));
+  --button-padding: calc(12px * var(--scaleby));
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Google Sans', Arial, sans-serif;
+  background: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(60px * var(--scaleby));
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 calc(20px * var(--scaleby));
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+}
+
+.brand {
+  font-size: calc(18px * var(--scaleby));
+  font-weight: 600;
+  color: #007bff;
+}
+
+.github-link {
+  font-size: calc(14px * var(--scaleby));
+  color: #333;
+  text-decoration: none;
+  background: #f3f3f3;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.github-link:hover {
+  background: #e0e0e0;
+}
+
+.container {
+  margin-top: calc(60px + 20px); /* to clear fixed navbar */
+  background: #fff;
+  padding: var(--padding);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: var(--container-width);
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: calc(20px * var(--scaleby));
+  color: #333;
+  font-size: var(--font-size-heading);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+  margin-top: calc(15px * var(--scaleby));
+  font-weight: bold;
+  color: #444;
+  font-size: var(--font-size-label);
+}
+
+input[type="file"],
+input[type="text"] {
+  flex: 1 0 0;
+  padding: var(--input-padding);
+  margin-top: calc(8px * var(--scaleby));
+  border: 1px solid #ccc;
+  border-radius: calc(6px * var(--scaleby));
+  font-size: var(--font-size-input);
+  font-family: 'Google Sans', Arial, sans-serif;
+}
+
+button {
+  margin-top: calc(20px * var(--scaleby));
+  width: 100%;
+  padding: var(--button-padding);
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: calc(6px * var(--scaleby));
+  cursor: pointer;
+  font-size: var(--font-size-button);
+  font-family: 'Google Sans', Arial, sans-serif;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.divider {
+  text-align: center;
+  margin: calc(20px * var(--scaleby)) 0;
+  font-size: var(--font-size-divider);
+  color: #666;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: calc(10px * var(--scaleby));
+}
+
+/* 📱 Responsive Scaling */
+@media (max-width: 768px) {
+  :root {
+    --scaleby: 0.9;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --scaleby: 0.8;
+    --container-width: calc(300px * var(--scaleby));
+  }
+
+  .container {
+    margin-top: calc(60px + 10px);
+  }
+}
